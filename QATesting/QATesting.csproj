@@ -101,6 +101,7 @@
     <Compile Include="TwitterLogin.cs" />
     <Compile Include="TwitterLoginPF.cs" />
     <Compile Include="SendEmail.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
