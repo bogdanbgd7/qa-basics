@@ -24,6 +24,9 @@ namespace QATesting
                 driver.Manage().Window.Maximize();
 
                 IWebElement SimpleAlertButton = driver.FindElement(By.XPath("//button[.='Simple Alert']"));
+                //implicit wait
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
                 SimpleAlertButton.Click();
                 IAlert alert = driver.SwitchTo().Alert();
                 Debug.WriteLine("\n\n\n\n\n\n" +alert.Text + "\n\n\n\n");
@@ -37,6 +40,7 @@ namespace QATesting
             }
             finally
             {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
                 driver.Quit();
             }
         }
