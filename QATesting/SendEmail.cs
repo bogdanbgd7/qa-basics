@@ -35,6 +35,7 @@ namespace QATesting
 
                 Console.WriteLine(e.Message);
             }
+
             finally
             {
                 Console.WriteLine("sent");
