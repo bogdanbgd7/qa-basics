@@ -8,9 +8,12 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support;
 using NUnit.Framework;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace QATesting
 {
+    
+
     [TestFixture]
     [Parallelizable]
     public class NunitParallelTest : Base
@@ -40,6 +43,9 @@ namespace QATesting
                 driver = new ChromeDriver();
                 driver.Navigate().GoToUrl("https://www.google.com/");
                 driver.Manage().Window.Maximize();
+
+               
+
                 driver.FindElement(By.Name("q")).SendKeys("Selenium 2");
                 //driver.FindElement(By.Name("btnK")).Click();
 

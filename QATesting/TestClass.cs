@@ -71,27 +71,53 @@ namespace QATesting
 
         }
 
+        public static IWebElement ExplicitWait(IWebDriver driver, string Identifier)
+        {
+            return new WebDriverWait(driver, TimeSpan.FromSeconds(5)).Until(ExpectedConditions.ElementExists(By.Id(Identifier)));
+        }
+
 
         [TestMethod]
+
         public void WikiSearch()
         {
-
             IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.wikipedia.org");
-            driver.Manage().Window.Maximize();
 
-            var element = driver.FindElement(By.Id("searchInput"));
-            element.Click();
-            element.SendKeys("Valorant");
+            try
+            {
 
-
-            driver.FindElement(By.ClassName("pure-button")).Click();
-            Task.Delay(4000).Wait();
+                driver.Navigate().GoToUrl("https://www.wikipedia.org");
+                driver.Manage().Window.Maximize();
 
 
+                IWebElement elementt = ExplicitWait(driver, "searchInput");
+                if (ExplicitWait(driver, "searchInput") != null)
+                {
+                    var element = driver.FindElement(By.Id("searchInput"));
+                    element.Click();
+                    element.SendKeys("Valorant");
+                }
 
-            driver.Close();
-            driver.Quit();
+                
+                driver.FindElement(By.ClassName("pure-button")).Click();
+                Task.Delay(4000).Wait();
+
+            }
+
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+
+            }
+
+            finally
+            {
+                driver.Close();
+                driver.Quit();
+                Debug.WriteLine("Successfully.");
+            }
+
 
         }
 
@@ -114,8 +140,6 @@ namespace QATesting
 
                 Console.WriteLine(ex.StackTrace);
             }
-
-
 
         }
     }
